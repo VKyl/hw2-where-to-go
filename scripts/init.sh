@@ -1,0 +1,1 @@
+pip install -r requirements.txt && ./migrate.sh ./start.sh
