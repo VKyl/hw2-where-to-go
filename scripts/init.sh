@@ -1,1 +1,1 @@
-pip install -r requirements.txt && ./migrate.sh ./start.sh
+pip install -r requirements.txt && ./scripts/migrate.sh && ./scripts/start.sh
