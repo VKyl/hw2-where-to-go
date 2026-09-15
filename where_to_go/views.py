@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms.place import PlaceForm
 from .usecase.places import PlacesUseCase
 from .repo.place import PlacesRepository
+import random
 
 def index(request):
     return render(request, 'index.html', {'page_title': 'About '})
@@ -26,3 +28,11 @@ def place_detail(request, place_id):
     if place is None:
         return render(request, 'place.html', {'page_title': 'Place Not Found', 'place': None})
     return render(request, 'place.html', {'page_title': f'Place {place.name}', 'place': place})
+
+def random_place(request):
+    uc = PlacesUseCase(PlacesRepository())
+    places = uc.get_all_places(request.session)
+    if not places:
+        return JsonResponse({'place': None})
+    place = random.choice(places)
+    return JsonResponse({'place': place.serialize()})
