@@ -2,9 +2,12 @@
 {% block content %}
 <div class="about">
     <h1>About Where To Go</h1>
+    <button id="random-place-btn" class="btn" type="button">Куди піти сьогодні?</button>
+    <p>(This button is a literal task requirement, so I decided to leave it in Ukrainian)</p>
+    <div id="random-place-card" class="random-place-card"></div>
     <img src="/static/gopher-train.png" alt="gopher" class="about-image">
     <p>Website is designed to help you find the best places to go!</p>
-    <p>(This button is a literal task requirement, so I decided to leave it in Ukrainian)</p>
-    <button class="btn"><a href="/places">Куди піти сьогодні?</a></button>
 </div>
+
+<script src="/static/random_place.js" defer></script>
 {% endblock %}
