@@ -3,24 +3,13 @@ from django.db import models
 
 
 class Place(models.Model):
-    class PlaceType(models.TextChoices):
-        RESTAURANT = 'restaurant', 'Restaurant'
-        CAFE = 'cafe', 'Cafe'
-        BAR = 'bar', 'Bar'
-        PARK = 'park', 'Park'
-        MUSEUM = 'museum', 'Museum'
-        ATTRACTION = 'attraction', 'Attraction'
-        OTHER = 'other', 'Other'
-
     id = models.CharField(primary_key=True)
     name = models.CharField(max_length=255)
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     description = models.TextField(blank=True)
-    place_type = models.CharField(
-        max_length=20, choices=PlaceType.choices, blank=True
-    )
+    place_type = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=255, blank=True)
     photo = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -34,16 +34,7 @@
 
         <div class="form-group">
             <label for="place_type">Place type <span class="optional">(optional)</span></label>
-            <select id="place_type" name="place_type" value="{{ form.place_type.value }}">
-                <option value="" selected>Select a type</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="cafe">Cafe</option>
-                <option value="bar">Bar</option>
-                <option value="park">Park</option>
-                <option value="museum">Museum</option>
-                <option value="attraction">Attraction</option>
-                <option value="other">Other</option>
-            </select>
+            <input type="text" id="place_type" name="place_type" placeholder="e.g. Restaurant, Park, Museum" value="{{ form.place_type.value|default_if_none:'' }}">
         </div>
 
         <div class="form-group">

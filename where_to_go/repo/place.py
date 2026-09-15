@@ -2,9 +2,14 @@ from ..models.place import Place
 
 class PlacesRepository:
     __COLLECTION_NAME = 'places'
+    __DEFAULT_PLACES = [
+         
+    ]
 
     def _get_collection(self, session) -> list[dict]:
-        return session.setdefault(self.__COLLECTION_NAME, [])
+        return session.setdefault(self.__COLLECTION_NAME, [
+
+        ])
 
     def get_all_places(self, session) -> list[Place]:
         return [Place.deserialize(place) for place in self._get_collection(session)]

@@ -3,16 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const triggerBtn = document.getElementById('random-place-btn');
     if (!container || !triggerBtn) return;
 
-    const TYPE_LABELS = {
-        restaurant: 'Restaurant',
-        cafe: 'Cafe',
-        bar: 'Bar',
-        park: 'Park',
-        museum: 'Museum',
-        attraction: 'Attraction',
-        other: 'Other',
-    };
-
     function escapeHtml(value) {
         return String(value ?? '').replace(/[&<>"']/g, (c) => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -25,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const stars = '★'.repeat(place.rating) + '☆'.repeat(5 - place.rating);
-        const typeLabel = TYPE_LABELS[place.place_type] || '';
         const detailUrl = `/places/${encodeURIComponent(place.id)}/`;
         container.innerHTML = `
             <a class="place-card" href="${escapeHtml(detailUrl)}">
@@ -36,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="place-card-rating" title="${place.rating} out of 5">${stars}</span>
                     </div>
                     <div class="place-card-meta">
-                        ${typeLabel ? `<span class="place-card-type">${escapeHtml(typeLabel)}</span>` : ''}
+                        ${place.place_type ? `<span class="place-card-type">${escapeHtml(place.place_type)}</span>` : ''}
                         ${place.location ? `<span class="place-card-location">${escapeHtml(place.location)}</span>` : ''}
                     </div>
                     ${place.description ? `<p class="place-card-description">${escapeHtml(place.description)}</p>` : ''}
