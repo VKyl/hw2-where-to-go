@@ -9,14 +9,14 @@
         </div>
         <div class="place-card-meta">
             {% if place.place_type %}
-                <span class="place-card-type">{{ place.get_place_type_display }}</span>
+                <span class="place-card-type">{{ place.place_type }}</span>
             {% endif %}
             {% if place.location %}
                 <span class="place-card-location">{{ place.location }}</span>
             {% endif %}
         </div>
         {% if place.description %}
-            <p class="place-card-description">{{ place.description|truncatechars:110 }}</p>
+            <p class="place-card-description">{{ place.description }}</p>
         {% endif %}
     </div>
 </a>
