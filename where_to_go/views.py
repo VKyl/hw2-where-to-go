@@ -34,5 +34,5 @@ def random_place(request):
     places = uc.get_all_places(request.session)
     if not places:
         return JsonResponse({'place': None})
-    place = random.choice(places, weights=[place.rating for place in places])
+    place = random.choices(places, weights=[place.rating for place in places], k=1)[0]
     return JsonResponse({'place': place.serialize()})
