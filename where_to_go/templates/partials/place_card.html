@@ -1,0 +1,22 @@
+<a class="place-card" href="{% url 'place_detail' place.id %}">
+    <img class="place-card-photo" src="/static/{{ place.photo|default:'gopher-train.png' }}" alt="{{ place.name }}">
+    <div class="place-card-body">
+        <div class="place-card-top">
+            <h2 class="place-card-name">{{ place.name }}</h2>
+            <span class="place-card-rating" title="{{ place.rating }} out of 5">
+                {% for n in "12345" %}{% if forloop.counter <= place.rating %}★{% else %}☆{% endif %}{% endfor %}
+            </span>
+        </div>
+        <div class="place-card-meta">
+            {% if place.place_type %}
+                <span class="place-card-type">{{ place.get_place_type_display }}</span>
+            {% endif %}
+            {% if place.location %}
+                <span class="place-card-location">{{ place.location }}</span>
+            {% endif %}
+        </div>
+        {% if place.description %}
+            <p class="place-card-description">{{ place.description|truncatechars:110 }}</p>
+        {% endif %}
+    </div>
+</a>
