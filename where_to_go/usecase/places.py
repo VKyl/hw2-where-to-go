@@ -15,7 +15,7 @@ class PlacesUseCase:
         self.places_repository.add_place(session, place)
         return True
 
-    def get_place(self, session, place_id: int) -> Place | None:
+    def get_place(self, session, place_id: str) -> Place | None:
         return self.places_repository.get_place(session, place_id)
 
     def get_all_places(self, session) -> list[Place]:
