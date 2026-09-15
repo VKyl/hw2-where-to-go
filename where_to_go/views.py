@@ -31,8 +31,7 @@ def place_detail(request, place_id):
 
 def random_place(request):
     uc = PlacesUseCase(PlacesRepository())
-    places = uc.get_all_places(request.session)
-    if not places:
+    place = uc.get_random_place(request.session)
+    if place is None:
         return JsonResponse({'place': None})
-    place = random.choices(places, weights=[place.rating for place in places], k=1)[0]
     return JsonResponse({'place': place.serialize()})

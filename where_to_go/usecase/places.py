@@ -6,6 +6,8 @@ from django.utils import timezone
 from ..models.place import Place
 from ..forms.place import PlaceForm
 
+import random
+
 class PlacesUseCase:
     def __init__(self, places_repository):
         self.places_repository = places_repository
@@ -26,4 +28,9 @@ class PlacesUseCase:
 
     def get_all_places(self, session) -> list[Place]:
         return self.places_repository.get_all_places(session)
-       
+
+    def get_random_place(self, session) -> Place | None:
+       places = self.get_all_places(session)
+       if not places:
+            return None
+       return random.choices(places, weights=[place.rating for place in places], k=1)[0]
