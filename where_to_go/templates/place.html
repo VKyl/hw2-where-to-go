@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if place %}
+        <div class="place-detail">
+            <img class="place-detail-photo" src="/static/{{ place.photo|default:'gopher-train.png' }}" alt="{{ place.name }}">
+            <div class="place-detail-body">
+                <a class="place-detail-back" href="{% url 'places' %}">&larr; Back to Places</a>
+                <div class="place-detail-top">
+                    <h1 class="place-detail-name">{{ place.name }}</h1>
+                    <span class="place-detail-rating" title="{{ place.rating }} out of 5">
+                        {% for n in "12345" %}{% if forloop.counter <= place.rating %}★{% else %}☆{% endif %}{% endfor %}
+                    </span>
+                </div>
+                <div class="place-detail-meta">
+                    {% if place.place_type %}
+                        <span class="place-card-type">{{ place.place_type }}</span>
+                    {% endif %}
+                    {% if place.location %}
+                        <span class="place-card-location">{{ place.location }}</span>
+                    {% endif %}
+                </div>
+                {% if place.description %}
+                    <p class="place-detail-description">{{ place.description }}</p>
+                {% endif %}
+                {% if place.created_at %}
+                    <p class="place-detail-created-at">Added {{ place.created_at|date:"d M Y, H:i" }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="places-empty">
+            <p>Place not found.</p>
+            <a class="btn" href="{% url 'places' %}">Back to Places</a>
+        </div>
+    {% endif %}
+{% endblock %}

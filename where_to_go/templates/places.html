@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="places-header">
+        <h1>Places</h1>
+    </div>
+
+    {% if places %}
+        <div class="places-grid">
+            {% for place in places %}
+                {% include 'partials/place_card.html' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="places-empty">
+            <p>No places yet.</p>
+            <a class="btn" href="{% url 'new_place' %}">New Place</a>
+        </div>
+    {% endif %}
+{% endblock %}
