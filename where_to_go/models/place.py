@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils.dateparse import parse_datetime
 
 
 class Place(models.Model):
@@ -12,10 +13,11 @@ class Place(models.Model):
     place_type = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=255, blank=True)
     photo = models.CharField(max_length=255, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
 
     @classmethod
     def deserialize(cls, data: dict):
+        created_at = data.get('created_at')
         return cls(
             id=data.get('id'),
             name=data.get('name'),
@@ -24,6 +26,7 @@ class Place(models.Model):
             place_type=data.get('place_type'),
             location=data.get('location'),
             photo=data.get('photo'),
+            created_at=parse_datetime(created_at) if created_at else None,
         )
 
     def serialize(self) -> dict:
@@ -35,6 +38,7 @@ class Place(models.Model):
             'place_type': self.place_type,
             'location': self.location,
             'photo': self.photo,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
         }
 
     def __str__(self):

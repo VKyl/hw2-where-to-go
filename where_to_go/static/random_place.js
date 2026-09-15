@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }[c]));
     }
 
+    function formatCreatedAt(isoString) {
+        const date = new Date(isoString);
+        if (Number.isNaN(date.getTime())) return '';
+        const datePart = date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        const timePart = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+        return `${datePart}, ${timePart}`;
+    }
+
     function renderCard(place) {
         if (!place) {
             container.innerHTML = '<p class="places-empty-inline">No places yet — add one!</p>';
@@ -29,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${place.location ? `<span class="place-card-location">${escapeHtml(place.location)}</span>` : ''}
                     </div>
                     ${place.description ? `<p class="place-card-description">${escapeHtml(place.description)}</p>` : ''}
+                    ${place.created_at ? `<p class="place-card-created-at">Added ${escapeHtml(formatCreatedAt(place.created_at))}</p>` : ''}
                 </div>
             </a>
         `;

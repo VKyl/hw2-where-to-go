@@ -1,6 +1,8 @@
 
 import uuid
 
+from django.utils import timezone
+
 from ..models.place import Place
 from ..forms.place import PlaceForm
 
@@ -11,7 +13,11 @@ class PlacesUseCase:
     def add_place(self, session, form: PlaceForm) -> bool:
         if not form.is_valid():
             return False
-        place = Place.deserialize({**form.cleaned_data, 'id': uuid.uuid4().hex})
+        place = Place.deserialize({
+            **form.cleaned_data,
+            'id': uuid.uuid4().hex,
+            'created_at': timezone.now().isoformat(),
+        })
         self.places_repository.add_place(session, place)
         return True
 

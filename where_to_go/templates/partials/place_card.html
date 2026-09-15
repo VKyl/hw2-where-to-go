@@ -18,5 +18,8 @@
         {% if place.description %}
             <p class="place-card-description">{{ place.description }}</p>
         {% endif %}
+        {% if place.created_at %}
+            <p class="place-card-created-at">Added {{ place.created_at|date:"d M Y, H:i" }}</p>
+        {% endif %}
     </div>
 </a>

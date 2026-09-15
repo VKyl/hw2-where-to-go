@@ -1,7 +1,10 @@
+from django.utils import timezone
+
 from ..models.place import Place
 
 class PlacesRepository:
     __COLLECTION_NAME = 'places'
+    __DEFAULT_CREATED_AT = timezone.now().replace(hour=10, minute=0, second=0, microsecond=0).isoformat()
     __DEFAULT_PLACES = [
         {
             'id': '683d8100a272496d891b548b83a9275d',
@@ -11,6 +14,7 @@ class PlacesRepository:
             'place_type': 'тусічне',
             'location': 'КМЦ',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': 'f555106bf9e34c19a9f7ce06bcdbd2c1',
@@ -20,6 +24,7 @@ class PlacesRepository:
             'place_type': 'ретріт',
             'location': 'КМА плац 2',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': 'c66ad225209d47068342e0afa40c74be',
@@ -29,6 +34,7 @@ class PlacesRepository:
             'place_type': 'історичне',
             'location': 'вул. Сковороди, 2',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': '1b7b9be6e98540c8acd391c49d0f73a8',
@@ -38,6 +44,7 @@ class PlacesRepository:
             'place_type': 'площа',
             'location': 'Поділ',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': '10fa68a3f8304b1fb5cd95d8be389c8e',
@@ -47,6 +54,7 @@ class PlacesRepository:
             'place_type': 'набережна',
             'location': 'Поділ, набережна',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': 'e6ee10a076a74394a0c83d33e416ac8c',
@@ -56,6 +64,7 @@ class PlacesRepository:
             'place_type': 'бібліотека',
             'location': 'вул. Волоська, 8-14',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
         {
             'id': '569d8b980514403d97452571b1275c27',
@@ -65,6 +74,7 @@ class PlacesRepository:
             'place_type': 'парк',
             'location': 'Парк Слави',
             'photo': 'gopher-train.png',
+            'created_at': __DEFAULT_CREATED_AT,
         },
     ]
 

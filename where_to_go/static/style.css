@@ -306,6 +306,11 @@ footer {
     overflow: hidden;
 }
 
+.place-card-created-at {
+    font-size: 0.75rem;
+    color: #888;
+}
+
 .random-place-card {
     margin-top: 20px;
     max-width: 300px;
@@ -373,6 +378,11 @@ footer {
 .place-detail-description {
     color: #555;
     line-height: 1.6;
+}
+
+.place-detail-created-at {
+    font-size: 0.8rem;
+    color: #888;
 }
 
 .places-empty {
